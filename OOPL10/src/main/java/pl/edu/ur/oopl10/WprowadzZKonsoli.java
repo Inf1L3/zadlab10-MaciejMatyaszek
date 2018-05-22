@@ -5,8 +5,15 @@
  */
 package pl.edu.ur.oopl10;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.InputMismatchException;
+
 
 /**
  *
@@ -83,6 +90,44 @@ public class WprowadzZKonsoli {
             System.out.println("Podano zły typ danych");
         }
     }
+        public void ToFileText() throws IOException {
+        String nazwa;
+        System.out.println("Podaj nazwę pliku: ");
+        nazwa = odczyt.nextLine();
+
+        try {
+            FileWriter fwo = new FileWriter(nazwa);
+           BufferedWriter bwo = new BufferedWriter(fwo);
+           String tekst;
+           System.out.println("Wpisz tekst do pliku: ");
+            tekst = odczyt.nextLine();
+            bwo.write(tekst);
+           bwo.newLine();
+           bwo.close();
+
+        } catch (IOException e) {
+            System.out.println("Błąd");
+         }
+
+     }
+    
+    
+    public void FromFileText() throws FileNotFoundException, IOException {
+        String nazwa;
+        System.out.println("Podaj nazwe pliku z ktorego chcesz odczytac tekst");
+        nazwa = odczyt.nextLine();
+        try {
+            FileReader fr = new FileReader(nazwa);
+            BufferedReader br = new BufferedReader(fr);
+
+            String tekst = br.readLine();
+            System.out.println(""+tekst);
+        } catch (FileNotFoundException e) {
+            System.out.println("Plik nie został odnaleziony");
+        }
+
+    }
+ 
 }
 
 
